@@ -5,7 +5,7 @@ return [
 
         'host' => 'localhost',
 
-        'dbname' => 'ooplogin',
+        'dbname' => 'users',
 
         'port' => '3307',
 

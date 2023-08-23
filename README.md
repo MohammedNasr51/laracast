@@ -1,2 +1,3 @@
 # laracast
-##Tring to detect the progres of laracast coding
+
+#Tring to detect the progres of laracast coding

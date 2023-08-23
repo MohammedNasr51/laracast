@@ -6,11 +6,7 @@ require 'functions.php';
 
 require 'Database.php';
 
-$config=[
-    'host'=>'localhost',
-    'dbname'=>'ooplogin',
-    'port'=>'3307'
-];
+$config= require('config.php');
 
 $db = new Database($config);
 

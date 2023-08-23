@@ -6,7 +6,13 @@ require 'functions.php';
 
 require 'Database.php';
 
-$db = new Database();
+$config=[
+    'host'=>'localhost',
+    'dbname'=>'ooplogin',
+    'port'=>'3307'
+];
+
+$db = new Database($config);
 
 $usrs = $db->Query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);
 

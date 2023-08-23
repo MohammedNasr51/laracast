@@ -4,13 +4,8 @@ class Database
 {
     public $connection;
 
-    public function __construct()
+    public function __construct($config)
     {
-        $config=[
-            'host'=>'localhost',
-            'dbname'=>'ooplogin',
-            'port'=>'3307'
-        ];
 
         $dsn = "mysql:".http_build_query($config,'',';');
         

@@ -18,12 +18,12 @@ class Database
         );
 
     }
-    public function Query($query)
+    public function Query($query,$params=[])
     {
 
         $statment = $this->connection->prepare($query);
 
-        $statment->execute();
+        $statment->execute($params);
 
         return $statment;
 

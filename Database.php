@@ -4,6 +4,8 @@ class Database
 {
     public $connection;
 
+    public $statment;
+
     public function __construct($config,$username='root',$password='MohamedNasr2002@')
     {
 
@@ -21,13 +23,37 @@ class Database
     public function Query($query,$params=[])
     {
 
-        $statment = $this->connection->prepare($query);
+        $this->statment = $this->connection->prepare($query);
 
-        $statment->execute($params);
+        $this->statment->execute($params);
 
-        return $statment;
+        return $this;
 
     }
 
+    public function find(){
+
+        return $this->statment->fetch();
+
+    }
+
+    public function FindOrFail(){
+
+        $result=$this->find();
+
+        if (!$result) {
+
+            abourt();
+
+        }
+
+        return $result;
+    }
+
+    public function get(){
+
+        return $this->statment->fetchAll();
+
+    }
 
 }

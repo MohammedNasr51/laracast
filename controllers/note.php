@@ -7,24 +7,14 @@ $db = new Database($config['database']);
 
 $heading= 'Note';
 
+$currentUser =1;
 
 $query ="SELECT * FROM notes WHERE id = :id";
 
-$note =$db->Query($query,['id'=>$_GET['id']])->fetch();
+$note =$db->Query($query,['id'=>$_GET['id']])->FindOrFail();
 
-$currentUser =1;
 
-if(!$note){
-
-    abourt(Response::NOT_FOUND);
-
-}
-elseif ($note['user_id'] === $currentUser)
-{
-
-    abourt(Response::FORBIDDEN);
-
-}
+authorize($note['user_id'] === $currentUser);
 
 
 require "views/note.view.php";

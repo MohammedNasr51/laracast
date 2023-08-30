@@ -19,7 +19,7 @@ if(!$note){
     abourt(Response::NOT_FOUND);
 
 }
-elseif ($note['user_id'] !== $currentUser)
+elseif ($note['user_id'] === $currentUser)
 {
 
     abourt(Response::FORBIDDEN);

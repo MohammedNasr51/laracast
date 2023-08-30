@@ -17,6 +17,8 @@
                             aria-current="page">Home</a>
                         <a href="/laracast/about"
                             class="<?= urlis('/laracast/about') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>  hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="/laracast/notes"
+                            class="<?= urlis('/laracast/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>  hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
                         <a href="/laracast/contact"
                             class="<?= urlis('/laracast/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>

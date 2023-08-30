@@ -7,6 +7,8 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $routes = [
     '/laracast/' => 'controllers/index.php',
     '/laracast/about' => 'controllers/about.php',
+    '/laracast/notes' => 'controllers/notes.php',
+    '/laracast/note' => 'controllers/note.php',
     '/laracast/contact' => 'controllers/contact.php',
 ];
 
@@ -25,6 +27,7 @@ function abourt($code = 404)
 {
     http_response_code($code);
     require "views/$code.php";
+    die();
 }
 
 routeToController($uri, $routes);

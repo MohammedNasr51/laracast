@@ -5,7 +5,7 @@ return [
 
         'host' => 'localhost',
 
-        'dbname' => 'users',
+        'dbname' => 'user_note',
 
         'port' => '3307',
 

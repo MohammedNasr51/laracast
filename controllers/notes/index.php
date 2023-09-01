@@ -11,4 +11,4 @@ $query ="SELECT * FROM notes WHERE user_id = :id";
 
 $notes =$db->Query($query,["id"=>1])->get();
 
-require "views/notes.view.php";
+require "views/notes/index.view.php";

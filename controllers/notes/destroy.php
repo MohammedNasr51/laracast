@@ -18,9 +18,8 @@ $note = $db->Query($query, ['id' => $_GET['id']])->FindOrFail();
 
 authorize($note['user_id'] === $currentUser);
 
-view("notes/show.view.php", [
+$db->Query('DELETE FROM notes where id = ?', [$_POST['id']]);
 
-    'heading' => 'Note',
+header('Location: /laracast/notes');
 
-    'note' => $note
-]);
+exit();

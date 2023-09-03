@@ -16,4 +16,4 @@ $router->delete('/laracast/note', 'controllers/notes/destroy.php');
 
 $router->get('/laracast/note/create', 'controllers/notes/create.php');
 
-$router->post('/laracast/notes', 'controllers/notes/store.php');
+$router->post('/laracast/notes', 'controllers/notes/store.php'); 

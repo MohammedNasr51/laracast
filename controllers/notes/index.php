@@ -16,3 +16,4 @@ view("notes/index.view.php", [
 
     'notes' => $notes
 ]);
+

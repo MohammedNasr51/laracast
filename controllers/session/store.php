@@ -14,9 +14,9 @@ $password = $_POST['password'];
 $errors = [];
 
 
-if (! Validator::stringvalidate($password, 7, 255)) {
+if (! Validator::stringvalidate($password)) {
 
-    $errors['password'] = 'Please provide a password of at least seven characters.';
+    $errors['password'] = 'Please provide a valid password .';
 
 }
 
@@ -26,15 +26,12 @@ if (! Validator::emailValidate($email)) {
 
 }
 
-// find the corresponding note
-
-
 
 // if no validation errors, update the record in the notes database table.
 
 if (count($errors)) {
 
-    view("registeration/create.view.php", [
+    view("session/create.view.php", [
         'errors' => $errors
     ]);
 }
@@ -49,16 +46,18 @@ $user = $db->query('select * from users where email = :email', [
 
 
 
-if (!$user) {
-    $db->Query("INSERT INTO users(email, password) VALUES(:email,:password)",[
-
-        "email" => $email,
+if ($user) {
     
-        "password" => password_hash($password,PASSWORD_BCRYPT)
-    ]);
+if(password_verify($password, $user['password'])){
 
-    login($user=['email' => $email]);
+    login($user);
 
-}else{
-    login($user); 
 }
+
+}
+
+$errors=['verify'=>'Email or Password does not match try another Email or Password'];
+
+view("session/create.view.php", [
+    'errors' => $errors
+]);

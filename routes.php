@@ -9,7 +9,7 @@ $router->get('/laracast/about', 'controllers/about.php');
 $router->get('/laracast/contact', 'controllers/contact.php'); 
 
 
-$router->get('/laracast/notes', 'controllers/notes/index.php');
+$router->get('/laracast/notes', 'controllers/notes/index.php')->only('auth');
 
 $router->get('/laracast/note', 'controllers/notes/show.php');
 
@@ -29,6 +29,16 @@ $router->post('/laracast/notes', 'controllers/notes/store.php');
 
 
 
-$router->get('/laracast/register', 'controllers/registeration/create.php'); 
+$router->get('/laracast/register', 'controllers/registeration/create.php')->only('guest'); 
 
-$router->post('/laracast/register', 'controllers/registeration/store.php'); 
+$router->post('/laracast/register', 'controllers/registeration/store.php')->only('guest');
+
+
+
+$router->get('/laracast/login', 'controllers/session/create.php')->only('guest'); 
+
+$router->post('/laracast/session', 'controllers/session/store.php')->only('guest');  
+
+
+
+$router->delete('/laracast/session', 'controllers/session/destroy.php')->only('auth');  

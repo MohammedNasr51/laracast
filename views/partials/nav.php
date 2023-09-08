@@ -17,9 +17,11 @@
                             aria-current="page">Home</a>
                         <a href="/laracast/about"
                             class="<?= urlis('/laracast/about') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>  hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                            <?php if ($_SESSION['user']?? false) :?>
                         <a href="/laracast/notes"
                             class="<?= urlis('/laracast/notes') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>  hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Notes</a>
-                        <a href="/laracast/contact"
+                        <?php endif; ?>
+                            <a href="/laracast/contact"
                             class="<?= urlis('/laracast/contact') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Contact</a>
                     </div>
                 </div>
@@ -51,9 +53,11 @@
                                         alt="">
                                 </button>
                             <?php else: ?>
-                                <a href="/laracast/register" class="text-white">Register</a>
+                                <a href="/laracast/register" class="<?= urlis('/laracast/register') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>  hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</a>
+                                <a href="/laracast/login" class="<?= urlis('/laracast/login') ? 'bg-gray-900 text-white' : 'text-gray-300' ?>  hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Log In</a>
                             <?php endif; ?>
                         </div>
+                        
 
                         <!--
                         Dropdown menu, show/hide based on menu state.
@@ -67,6 +71,14 @@
                         -->
 
                     </div>
+                    <?php if ($_SESSION['user'] ?? false): ?>
+                    <div class="relative ml-3">
+                            <form action="/laracast/session" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button class="text-white">Log Out</button>
+                            </form>
+                    </div>
+                    <?php endif;?>
                 </div>
             </div>
             <div class="-mr-2 flex md:hidden">

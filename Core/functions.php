@@ -44,26 +44,8 @@ function abourt($code = 404)
     die();
 }
 
-function login($user)
-{
-    $_SESSION['user'] = ['email' => $user['email']];
+function redirect($path){
 
-    session_regenerate_id(true);
-
-    header('location: /laracast/');
+    header("location: $path");
     exit();
-}
-
-function logout()
-{
-
-    $_SESSION = [];
-
-    session_destroy();
-
-    $params = session_get_cookie_params();
-
-
-    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-
 }

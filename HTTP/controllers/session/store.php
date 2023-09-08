@@ -1,11 +1,8 @@
 <?php
-use Core\App;
+
 use Core\Authenticator;
-use Core\Database;
-use Core\Validator;
 use HTTP\Forms\LoginForm;
 
-$db = App::resolve(Database::class);
 
 $email = $_POST['email'];
 
@@ -15,40 +12,22 @@ $password = $_POST['password'];
 
 $form = new LoginForm();
 
+$auth = new Authenticator;
 
+if ($form->validate($email, $password)) {
 
-if (! $form->validate($email, $password)) {
+    if ($auth->attempt($email, $password)) {
 
-    view("session/create.view.php", [
-        'errors' => $form->errors()
-    ]);
-}
+        redirect("/laracast/");
 
-$auth= new Authenticator;
+    }
 
-$auth->attempt($email, $password);
-
-
-$user = $db->query('select * from users where email = :email', [
-
-    'email' => $email
-
-])->find();
-
-
-
-if ($user) {
-    
-if(password_verify($password, $user['password'])){
-
-    login($user);
+    $form->error('verify', 'Email or Password does not match try another Email or Password');
 
 }
-
-}
-
-$errors=['verify'=>'Email or Password does not match try another Email or Password'];
 
 view("session/create.view.php", [
-    'errors' => $errors
+
+    'errors' => $form->errors()
+
 ]);

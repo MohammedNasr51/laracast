@@ -65,38 +65,10 @@ class Router{
 
                 // apply the middleware  
 
-                    #version 03
-
                 Middleware::resolve($route['middleware']);
 
 
-
-                    #version 02
-
-                // if ($route['middleware']) {
-
-                //     $middleware = Middleware::MAP[$route['middleware']];
-                //     (new $middleware)->handle();
-                // }
-
-
-
-
-
-                    #version 01
-
-                // if ($route['middleware']==='auth') {
-
-                //     (new Auth) ->handle();
-
-                // }
-                // if ($route['middleware']==='guest') {
-
-                //     (new Guest) ->handle();
-
-                // }
-
-                return require base_path($route['controller']);
+                return require base_path('HTTP/controllers/'.$route['controller']);
             }
 
         }

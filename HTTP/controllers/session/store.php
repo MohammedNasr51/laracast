@@ -1,9 +1,11 @@
 <?php
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
+use HTTP\Forms\LoginForm;
 
-
+$db = App::resolve(Database::class);
 
 $email = $_POST['email'];
 
@@ -11,32 +13,21 @@ $password = $_POST['password'];
 
 // validate the form
 
-$errors = [];
+$form = new LoginForm();
 
 
-if (! Validator::stringvalidate($password)) {
 
-    $errors['password'] = 'Please provide a valid password .';
-
-}
-
-if (! Validator::emailValidate($email)) {
-
-    $errors['email'] = 'Please provide a valid email address.';
-
-}
-
-
-// if no validation errors, update the record in the notes database table.
-
-if (count($errors)) {
+if (! $form->validate($email, $password)) {
 
     view("session/create.view.php", [
-        'errors' => $errors
+        'errors' => $form->errors()
     ]);
 }
 
-$db = App::resolve(Database::class);
+$auth= new Authenticator;
+
+$auth->attempt($email, $password);
+
 
 $user = $db->query('select * from users where email = :email', [
 

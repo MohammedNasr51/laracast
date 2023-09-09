@@ -11,7 +11,7 @@ class LoginForm
     public function validate($email, $password)
     {
 
-        if (!Validator::stringvalidate($password,7,255)) {
+        if (!Validator::stringvalidate($password,7,30)) {
 
             $this->errors['password'] = 'Please provide a valid password .';
 

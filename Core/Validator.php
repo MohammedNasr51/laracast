@@ -3,18 +3,21 @@
 namespace Core;
 
 
-class Validator{
+class Validator
+{
 
-    public static function stringvalidate($value, $min=1, $max= INF){
+    public static function stringvalidate($value, $min = 1, $max = INF)
+    {
 
-        $value=trim($value);
+        $value = trim($value);
 
-        return strlen($value) >= $min && strlen($value) <= $max ;
+        return strlen($value) >= $min && strlen($value) <= $max;
 
     }
-    public static function emailValidate($value){
+    public static function emailValidate($value)
+    {
 
-return filter_var($value, FILTER_VALIDATE_EMAIL);
+        return filter_var($value, FILTER_VALIDATE_EMAIL);
 
     }
 

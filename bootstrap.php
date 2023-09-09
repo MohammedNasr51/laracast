@@ -18,5 +18,4 @@ $container->bind('Core\Database', function () {
 
 App::setContainer($container);
 
-$db = $container->resolve('Core\Database');
 

@@ -1,8 +1,6 @@
 <?php
-
 use Core\Authenticator;
 use HTTP\Forms\LoginForm;
-
 
 $email = $_POST['email'];
 
@@ -12,11 +10,11 @@ $password = $_POST['password'];
 
 $form = new LoginForm();
 
-$auth = new Authenticator;
+
 
 if ($form->validate($email, $password)) {
 
-    if ($auth->attempt($email, $password)) {
+    if ((new Authenticator)->attempt($email, $password)) {
 
         redirect("/laracast/");
 
@@ -26,8 +24,12 @@ if ($form->validate($email, $password)) {
 
 }
 
-view("session/create.view.php", [
+$_SESSION['_flash']['errors']=$form->errors();
 
-    'errors' => $form->errors()
+return redirect('/laracast/login');
 
-]);
+// return view("session/create.view.php", [
+
+//     'errors' => $form->errors()
+
+// ]);

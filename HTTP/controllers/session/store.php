@@ -1,35 +1,30 @@
 <?php
 
 use Core\Authenticator;
-use Core\Session;
-use Core\ValidationException;
 use HTTP\Forms\LoginForm;
 
-try {
 
-    $form = LoginForm::validate($attributes = [
-        'email' => $_POST['email'],
-    
-        'password' => $_POST['password']
-    ]);
+$form = LoginForm::validate($attributes = [
 
-} catch (ValidationException $exception) {
+    'email' => $_POST['email'],
 
-    Session::flash('errors', $exception->errors);
+    'password' => $_POST['password']
+]);
+
+
+$signedin = (new Authenticator)->attempt(
     
-    Session::flash('old', $exciption->old);
-    
-    return redirect('/laracast/login');
+    $attributes['email'], $attributes['password']);
+
+
+if (! $signedin) {
+
+    $form->error('verify', 'Email or Password does not match try another Email or Password')
+
+    ->throw();
+
+
 }
 
 
-if ((new Authenticator)->attempt($attributes['email'], $attributes['password'])) {
-
-    redirect("/laracast/");
-
-}
-
-$form->error('verify', 'Email or Password does not match try another Email or Password');
-
-
-
+redirect("/laracast/");

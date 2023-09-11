@@ -76,6 +76,12 @@ class Router{
         $this->abourt();
         
     }
+
+    public function previousUrl(){
+
+        return $_SERVER['HTTP_REFERER'];
+
+    }
     protected function abourt($code = 404)
     {
         http_response_code($code);

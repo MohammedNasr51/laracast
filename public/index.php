@@ -41,7 +41,7 @@ try {
 
     Session::flash('old', $exception->old);
 
-    return redirect($_SERVER['HTTP_REFERER']);
+    return redirect($router->previousUrl());
 }
 
 Session::unflash();

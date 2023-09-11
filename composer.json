@@ -1,0 +1,19 @@
+{
+    "name": "mnasr/laracast",
+    "authors": [
+        {
+            "name": "abc",
+            "email": "mnasr0868@gmail.com"
+        }
+    ],
+    "require": {},
+
+    "autoload": {
+
+        "psr-4": {
+
+            "Core\\": "Core/",
+            "HTTP\\": "HTTP/"
+        }
+    }
+}

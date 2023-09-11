@@ -26,6 +26,12 @@ if ($form->validate($email, $password)) {
 
 }
 
+Session::flash('old',[
+
+    'email' =>  $_POST['email']
+]);
+
 Session::flash('errors', $form->errors());
+
 
 return redirect('/laracast/login');

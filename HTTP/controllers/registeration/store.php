@@ -1,7 +1,9 @@
 <?php
 use Core\App;
+use Core\Authenticator;
 use Core\Database;
 use Core\Validator;
+use HTTP\Forms\LoginForm;
 
 
 
@@ -57,8 +59,8 @@ if (!$user) {
         "password" => password_hash($password,PASSWORD_BCRYPT)
     ]);
 
-    login($user=['email' => $email]);
+    (new Authenticator)->login($user=['email' => $email]);
 
 }else{
-    login($user); 
+    (new Authenticator)->login($user); 
 }

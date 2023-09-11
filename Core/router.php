@@ -1,8 +1,6 @@
 <?php
 
 namespace Core;
-use Core\middleware\Auth;
-use Core\middleware\Guest;
 use Core\middleware\Middleware;
 
 class Router{
